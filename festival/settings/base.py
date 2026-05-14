@@ -1,11 +1,9 @@
-from pathlib import Path
-import os
 from datetime import timedelta
+import os
+from pathlib import Path
 import environ
 import pymysql
 pymysql.install_as_MySQLdb()
-
-AUTH_USER_MODEL = 'accounts.User'
   
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -146,6 +144,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'festival.wsgi.application'
+
+AUTH_USER_MODEL = 'accounts.User'
 
 
 # Password validation
