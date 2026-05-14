@@ -1,15 +1,7 @@
-from .base import *  # noqa
-
-DEBUG = False
+from .base import *
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASSWORD'),
-        'HOST': env('DATABASE_HOST'),
-        'PORT': env('DATABASE_PORT'),
-        "OPTIONS": {"charset": "utf8mb4"},
-    }
+    'default': env.db(),
 }
+
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
