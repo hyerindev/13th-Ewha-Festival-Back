@@ -11,21 +11,10 @@ AUTH_USER_MODEL = 'accounts.User'
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+env = environ.Env(DEBUG=(bool, False))
 
-# environ을 사용해 환경 변수 설정
-env = environ.Env(
-    DEBUG=(bool, False)
-)
-
-# 환경 변수 로드
-SECRET_KEY = env('DJANGO_SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS')
-
-SECRET_KEY = env('DJANGO_SECRET_KEY')
-DEBUG = env('DEBUG')
-
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS')
 
 AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -160,17 +149,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'festival.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -193,22 +171,23 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
+
+USE_L10N = True
 
 USE_TZ = True
 
    
 # S3 설정하기
 # S3 setting
-AWS_S3_ACCESS_KEY_ID = os.environ.get('AWS_S3_ACCESS_KEY_ID')
-AWS_S3_SECRET_ACCESS_KEY = os.environ.get('AWS_S3_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME')
-
+AWS_S3_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_S3_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
